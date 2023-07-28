@@ -1,6 +1,9 @@
 const screenInput = document.querySelector(".screen");
 let inputString = "";
-let operationClicked = false;
+
+const OPERATIONS = ["*", "/", "+", "-"];
+
+const isOperation = (val) => OPERATIONS.some((operation) => operation === val);
 
 document.querySelectorAll(".number").forEach((elem) => {
   elem.addEventListener("click", (event) => {
@@ -12,13 +15,11 @@ const handleNumbers = (val) => {
   if (!screenInput) {
     return;
   }
-  if (operationClicked) {
+  if (isOperation(inputString[inputString.length - 1])) {
     screenInput.value = val;
-    inputString += val;
-    operationClicked = false;
-    return;
+  } else {
+    screenInput.value += val;
   }
-  screenInput.value += val;
   inputString += val;
 };
 
@@ -31,11 +32,9 @@ document.querySelectorAll(".math-operation").forEach((elem) => {
 const handleOperations = (val) => {
   if (!isNaN(Number(inputString.slice(-1))) && screenInput.value != "") {
     inputString += val;
-    operationClicked = true;
   } else {
     inputString = inputString.substring(0, inputString.length - 1);
     inputString += val;
-    operationClicked = true;
   }
 };
 
