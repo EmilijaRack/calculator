@@ -75,20 +75,18 @@ const handleCalculations = (symbols, numbers) => {
       (element) => element === "×" || element === "÷"
     );
     if (symbols[symbolIndex] === "×") {
-      numbers[symbolIndex] =
-        Number(numbers[symbolIndex]) * Number(numbers[symbolIndex + 1]);
+      numbers[symbolIndex] = numbers[symbolIndex] * numbers[symbolIndex + 1];
     } else {
-      numbers[symbolIndex] =
-        Number(numbers[symbolIndex]) / Number(numbers[symbolIndex + 1]);
+      numbers[symbolIndex] = numbers[symbolIndex] / numbers[symbolIndex + 1];
     }
     numbers.splice(symbolIndex + 1, 1);
     symbols.splice(symbolIndex, 1);
   }
   while (numbers.length > 1) {
     if (symbols[0] === "+") {
-      numbers[0] = Number(numbers[0]) + Number(numbers[1]);
+      numbers[0] = +numbers[0] + +numbers[1];
     } else {
-      numbers[0] = Number(numbers[0]) - Number(numbers[1]);
+      numbers[0] = numbers[0] - numbers[1];
     }
     numbers.splice(1, 1);
     symbols.splice(1, 1);
