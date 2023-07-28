@@ -4,7 +4,7 @@ let operationClicked = false;
 
 document.querySelectorAll(".number").forEach((elem) => {
   elem.addEventListener("click", (event) => {
-    handleNumbers(event.target.getAttribute("data-value"));
+    handleNumbers(event.target.dataset.value);
   });
 });
 
@@ -24,7 +24,7 @@ const handleNumbers = (val) => {
 
 document.querySelectorAll(".math-operation").forEach((elem) => {
   elem.addEventListener("click", (event) => {
-    handleOperations(event.target.getAttribute("data-value"));
+    handleOperations(event.target.dataset.value);
   });
 });
 
@@ -70,11 +70,11 @@ const getAnswer = (val) => {
 };
 
 const handleCalculations = (symbols, numbers) => {
-  while (symbols.includes("×") || symbols.includes("÷")) {
+  while (symbols.includes("*") || symbols.includes("/")) {
     const symbolIndex = symbols.findIndex(
-      (element) => element === "×" || element === "÷"
+      (element) => element === "*" || element === "/"
     );
-    if (symbols[symbolIndex] === "×") {
+    if (symbols[symbolIndex] === "*") {
       numbers[symbolIndex] = numbers[symbolIndex] * numbers[symbolIndex + 1];
     } else {
       numbers[symbolIndex] = numbers[symbolIndex] / numbers[symbolIndex + 1];
